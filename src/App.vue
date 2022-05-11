@@ -7,22 +7,22 @@ export default{
       conteudos:[
         {conteudoid:"afazer" , titulo:"A Fazer",
         cards:[
-        {id:1 , nome: "Card 1 a fazer" , cont:"Conteudo do card 1"},
-        {id:2 , nome: "Card 2 a fazer" , cont:"Conteudo do card 2"},
-        {id:5 , nome: "Card 3 a fazer" , cont:"Conteudo do card 3"},
-        {id:6 , nome: "Card 4 a fazer" , cont:"Conteudo do card 4"},
-        {id:7 , nome: "Card 5 a fazer" , cont:"Conteudo do card 5"},
+        {id:1 , nome: "Front end" , cont:"Bersk tem que fazer o Front"},
+        {id:2 , nome: "Documentação" , cont:"Padrão ABNT"},
+        {id:5 , nome: "BackEnd" , cont:"Melhor Parte pelo Filipe"},
+        {id:6 , nome: "Negociações" , cont:"Como negociar com o Soethe"},
+        {id:7 , nome: "Festa" , cont:"Comemorar a parte 1"},
         ]},
         {conteudoid:"feito" , titulo:"Feito",
         cards:[
-        {id:3 , nome: "Card 1 Feito" , cont:"Conteudo do card 1"},
-        {id:4 , nome: "Card 2 Feito" , cont:"Conteudo do card 2"},
+        {id:3 , nome: "Ideia do Projeto" , cont:"definir a ideia"},
+        {id:4 , nome: "Definir quem faz oque" , cont:"quem vai fazer cada coisa"},
         ]},
       ]
     }
   },
   methods:{
-    scragbadum(id){
+    scragbadum(id , idconteudo){
        function procurarIndice(arraySearch, atributo, valor){
        var cont=0;
        var indices=[];
@@ -35,13 +35,20 @@ export default{
         }
       return indices;
       }
+      if (idconteudo == 'afazer'){
       const idc = procurarIndice(this.conteudos[0].cards,"id",id)
        
        this.conteudos[1].cards.push({id:this.conteudos[0].cards[idc[0]].id, nome:this.conteudos[0].cards[idc[0]].nome, cont:this.conteudos[0].cards[idc[0]].cont});
        this.conteudos[0].cards.splice(idc[0],1);
+      }if(idconteudo == 'feito'){
+      const idc = procurarIndice(this.conteudos[1].cards,"id",id)
+       
+       this.conteudos[0].cards.push({id:this.conteudos[1].cards[idc[0]].id, nome:this.conteudos[1].cards[idc[0]].nome, cont:this.conteudos[1].cards[idc[0]].cont});
+       this.conteudos[1].cards.splice(idc[0],1);
+      }
+      
   
-    },
-
+    }
   }
 };
 </script>
@@ -76,15 +83,7 @@ html {
   padding: 10px;
   justify-content: space-around;
   width: 80%;
-  height: 40vh;
-}
-.kanbanColuna {
-  border: solid black;
-  width: 45%;
-  text-align: center;
-}
-.card {
-  border: solid black;
-  margin: 0px 50px 5px 50px;
+  height: 50vh;
+ 
 }
 </style>
