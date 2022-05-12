@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router'
 import Home from '@/assets/views/home.vue'
-import sobre from '@/assets/views/sobre.vue'
 const routes = [
     {
         path: '/',
@@ -10,11 +9,11 @@ const routes = [
     {
         path:'/sobre',
         name:'sobre',
-        component:  sobre
+        component:  () => import('@/assets/views/sobre.vue')
     }
 ]
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     routes
 })
 export default router

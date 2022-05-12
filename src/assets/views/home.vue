@@ -1,5 +1,6 @@
 <script>
 import Conteudo from '@/assets/components/conteudo.vue';
+
 export default{
   components: { Conteudo },
   data(){
