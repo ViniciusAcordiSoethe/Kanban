@@ -1,54 +1,58 @@
 <script>
 import Conteudo from '@/assets/components/conteudo.vue';
 
-export default{
+export default {
   components: { Conteudo },
-  data(){
-    return{
-      conteudos:[
-        {conteudoid:"afazer" , titulo:"A Fazer",
-        cards:[
-        {id:1 , nome: "Front end" , cont:"Bersk tem que fazer o Front"},
-        {id:2 , nome: "Documentação" , cont:"Padrão ABNT"},
-        {id:5 , nome: "BackEnd" , cont:"Melhor Parte pelo Filipe"},
-        {id:6 , nome: "Negociações" , cont:"Como negociar com o Soethe"},
-        {id:7 , nome: "Festa" , cont:"Comemorar a parte 1"},
-        ]},
-        {conteudoid:"feito" , titulo:"Feito",
-        cards:[
-        {id:3 , nome: "Ideia do Projeto" , cont:"definir a ideia"},
-        {id:4 , nome: "Definir quem faz oque" , cont:"quem vai fazer cada coisa"},
-        ]},
+  data() {
+    return {
+      conteudos: [
+        {
+          conteudoid: "afazer", titulo: "A Fazer",
+          cards: [
+            { id: 1, nome: "Front end", cont: "Bersk tem que fazer o Front" },
+            { id: 2, nome: "Documentação", cont: "Padrão ABNT" },
+            { id: 5, nome: "BackEnd", cont: "Melhor Parte pelo Filipe" },
+            { id: 6, nome: "Negociações", cont: "Como negociar com o Soethe" },
+            { id: 7, nome: "Festa", cont: "Comemorar a parte 1" },
+          ]
+        },
+        {
+          conteudoid: "feito", titulo: "Feito",
+          cards: [
+            { id: 3, nome: "Ideia do Projeto", cont: "definir a ideia" },
+            { id: 4, nome: "Definir quem faz oque", cont: "quem vai fazer cada coisa" },
+          ]
+        },
       ]
     }
   },
-  methods:{
-    scragbadum(id , idconteudo){
-       function procurarIndice(arraySearch, atributo, valor){
-       var cont=0;
-       var indices=[];
-       for(var i in arraySearch){
+  methods: {
+    scragbadum(id, idconteudo) {
+      function procurarIndice(arraySearch, atributo, valor) {
+        var cont = 0;
+        var indices = [];
+        for (var i in arraySearch) {
           var row = arraySearch[i];
-         if(row[atributo]==valor){
-           indices.push(cont)
+          if (row[atributo] == valor) {
+            indices.push(cont)
           }
           cont++;
         }
-      return indices;
+        return indices;
       }
-      if (idconteudo == 'afazer'){
-      const idc = procurarIndice(this.conteudos[0].cards,"id",id)
-       
-       this.conteudos[1].cards.push({id:this.conteudos[0].cards[idc[0]].id, nome:this.conteudos[0].cards[idc[0]].nome, cont:this.conteudos[0].cards[idc[0]].cont});
-       this.conteudos[0].cards.splice(idc[0],1);
-      }if(idconteudo == 'feito'){
-      const idc = procurarIndice(this.conteudos[1].cards,"id",id)
-       
-       this.conteudos[0].cards.push({id:this.conteudos[1].cards[idc[0]].id, nome:this.conteudos[1].cards[idc[0]].nome, cont:this.conteudos[1].cards[idc[0]].cont});
-       this.conteudos[1].cards.splice(idc[0],1);
+      if (idconteudo == 'afazer') {
+        const idc = procurarIndice(this.conteudos[0].cards, "id", id)
+
+        this.conteudos[1].cards.push({ id: this.conteudos[0].cards[idc[0]].id, nome: this.conteudos[0].cards[idc[0]].nome, cont: this.conteudos[0].cards[idc[0]].cont });
+        this.conteudos[0].cards.splice(idc[0], 1);
+      } if (idconteudo == 'feito') {
+        const idc = procurarIndice(this.conteudos[1].cards, "id", id)
+
+        this.conteudos[0].cards.push({ id: this.conteudos[1].cards[idc[0]].id, nome: this.conteudos[1].cards[idc[0]].nome, cont: this.conteudos[1].cards[idc[0]].cont });
+        this.conteudos[1].cards.splice(idc[0], 1);
       }
-      
-  
+
+
     }
   }
 };
@@ -57,7 +61,8 @@ export default{
   <section id="kanbanGrande">
     <h1>Kanban</h1>
     <div id="kanbanPrincipal">
-      <Conteudo v-for="conteudo in conteudos" :key="conteudo.conteudoid" :conteudo="conteudo" @scragbadum="scragbadum" />
+      <Conteudo v-for="conteudo in conteudos" :key="conteudo.conteudoid" :conteudo="conteudo"
+        @scragbadum="scragbadum" />
     </div>
   </section>
 </template>
@@ -65,10 +70,12 @@ export default{
 body,
 h1,
 html {
+  color: white;
   margin: 0px;
 }
+
 #kanbanGrande {
-  background-color: aqua;
+  background-color: rgb(75, 75, 75);
   width: 100vw;
   height: 100vh;
   margin: 0px;
@@ -77,14 +84,36 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 #kanbanPrincipal {
-  border: solid black;
-  background-color: blueviolet;
+  border-radius: 10px;
+  background-color: rgb(175, 174, 166);
   display: flex;
   padding: 10px;
   justify-content: space-around;
   width: 80%;
   height: 50vh;
- 
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>

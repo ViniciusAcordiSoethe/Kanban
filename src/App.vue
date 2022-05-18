@@ -1,25 +1,27 @@
 <template>
-    <nav>
-      <Router-link class="item" :to="{name: 'home'}">Home</Router-link>
-      <Router-link class="item" :to="{name: 'sobre'}">Sobre</Router-link>
-    </nav>
+  <nav>
+    <Router-link class="item" :to="{ name: 'home' }">Home</Router-link>
+    <Router-link class="item" :to="{ name: 'sobre' }">Sobre</Router-link>
+  </nav>
   <Router-view />
 </template>
 <style scoped>
-nav{
+nav {
   display: flex;
   text-decoration: none;
   justify-content: center;
   background-color: black;
 }
-.item{
+
+.item {
   margin-right: 10px;
   border: 1px solid black;
   text-decoration: none;
-  color:white;
+  color: white;
 }
-.item:hover{
- background-color: gray;
+
+.item:hover {
+  background-color: gray;
 }
 </style>
 
